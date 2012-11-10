@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 
     grunt.registerHelper('bower-assets', function(done) {
         var fs = require('fs');
-        var shell = require('shelljs');
+        var sh = require('shelljs');
         var assets = grunt.config('bower.assets');
 
         fs.readFile('./component.json', function(err, data){
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
                 var components = JSON.parse(data);
                 for(var component in components.dependencies){
                     var asset = assets[component] || component;
-                    shell.cp('-f', 
+                    sh.cp('-f', 
                         './components/' + component + '/' + asset + '.js',
                         './public/js/vendor/');
                     grunt.log.writeln("Moved " + component + " to js vendor folder.");
