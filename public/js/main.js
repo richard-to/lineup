@@ -4,7 +4,11 @@ require(['lib/config'], function() {
             $('#fileupload').fileupload({
                 dataType: 'json',
                 done: function (e, data) {
-                    $('<p/>').text(data.result.image).appendTo(document.body);
+                    console.log(data.result);
+                    $('<img/>').attr('src', data.result.image).appendTo(document.body);
+                    for(i in data.result.optimized){
+                        $('<img/>').attr('src', data.result.optimized[i].image).appendTo(document.body); 
+                    }
                 }
             });
         });   
